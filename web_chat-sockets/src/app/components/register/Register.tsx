@@ -1,7 +1,7 @@
-import { Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material"
-import { useRouter } from "next/router";
+import { Grid, Paper, Box, Typography, TextField, Button, Container } from "@mui/material"
+import { useRouter } from "next/router"
 
-const Login = () => {
+const Register = () => {
     const router = useRouter();
     
     return (
@@ -28,8 +28,15 @@ const Login = () => {
 
                 <Grid item md={6}>
                     <Paper square sx={{height:"100%", display:"flex", alignItems:"center", flexDirection:"column"}}>
-                        <Box sx={{p:2}}>
-                            <h1>Login</h1>
+                        <Box sx={{p:1}}>
+                            <Typography variant="h4" sx={{mb:2, fontWeight:"500"}}>Registro</Typography>
+                            <TextField
+                            fullWidth
+                            id="nome"
+                            label="Nome"
+                            variant="outlined"
+                            sx={{mb:3}}/>
+
                             <TextField
                             fullWidth
                             id="email"
@@ -45,10 +52,9 @@ const Login = () => {
                             sx={{mb:3}}/>
                             
                             <Button variant="contained" fullWidth sx={{py: 2, bgcolor: "#b8f2db", color:"black"}}>Login</Button>
-                            <Button sx={{ mt:1, fontSize:"12px"}}>Esqueci a Senha</Button>
                         </Box>
                         <Box>
-                            <Typography sx={{mt:3}}>Não tem uma conta? <Button onClick={() => router.push("/register")}>Registre-se</Button></Typography>
+                            <Typography sx={{mt:3}}>Já tem uma conta? <Button onClick={() => router.push("/login")}>Entrar</Button></Typography>
                         </Box>
                     </Paper>
                 </Grid>
@@ -57,4 +63,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Register
