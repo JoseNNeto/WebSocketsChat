@@ -10,7 +10,7 @@ const SideBar = () => {
         setValue(newValue);
     }
    return (
-    <Box sx={{width:"25vw"}}>
+    <Box sx={{width:"70vw", height: "100vh"}}>
         <HeaderSideBar />
         <Tabs value={"value"} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
             <Tab label="Chat" />

@@ -3,7 +3,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const HeaderSideBar = () => {
     return (
-        <Card sx={{background:"#b8f2db", borderRadius: 0}}>
+        <Card sx={{background:"#b8f2db", borderRadius: 0, width:"25vw"}}>
             <CardHeader
                 avatar={
                     <Avatar sx={{bgcolor: "red"}} aria-label="recipe">
