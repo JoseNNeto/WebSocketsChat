@@ -3,9 +3,7 @@ import { Container } from "@mui/material"
 
 const Index = () => {
     return (
-        <Container>
-            <Chat />
-        </Container>
+        <Chat />
     )
 }
 

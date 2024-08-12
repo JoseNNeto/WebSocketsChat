@@ -6,7 +6,7 @@ import Footer from "./Footer";
 
 const ChatBox = () => {
     return ( 
-        <Box sx={{ width:"50vw", display: "flex", height: "100vh", flexDirection:"column"}}>
+        <Box sx={{ width:"70vw", display: "flex", height: "100vh", flexDirection:"column"}}>
             <HeaderMainChat />
             <ChatArea />
             <Footer />
