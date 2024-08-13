@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const PATH = "mongodb://localhost:27017/WebChat";
+const PATH = "mongodb://127.0.0.1:27017/WebChat";
 
 const connectMongo = async () => {
     try {
