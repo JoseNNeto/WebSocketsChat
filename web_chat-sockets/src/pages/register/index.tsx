@@ -1,4 +1,4 @@
-import Register from "@/app/components/register/Register"
+import {Register} from "@/app/components/register/Register"
 import { Container } from "@mui/material"
 
 const RegisterIndex = () => {
