@@ -3,7 +3,7 @@ import { Grid, Paper, Box, Typography, TextField, Button, Container, Alert } fro
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Register = () => {
     const [formError, setFormError] = useState<string>("");
@@ -13,6 +13,15 @@ export const Register = () => {
 
     const onSubmit = (data: any) => {
         api.post("/user/registro", data).then((res) => router.push("/login")).catch((err) => setFormError(err.response.data.msg));
+    }
+
+    try {
+        const token = localStorage.getItem("token");
+        if(token) {
+            router.push("/");
+        }
+    } catch (error) {
+        console.log(error);
     }
     
     return (
@@ -70,7 +79,7 @@ export const Register = () => {
                                     message: "Email inválido"
                                 }
                             })}
-                            error={!!errors.name}
+                            error={!!errors.email}
                             helperText={errors.email ? (errors.email.message as string): undefined}/>
 
                             <TextField
@@ -82,7 +91,7 @@ export const Register = () => {
                             {...register("senha", {
                                 required: "Campo obrigatório",
                             })}
-                            error={!!errors.name}
+                            error={!!errors.senha}
                             helperText={errors.senha ? (errors.senha.message as string): undefined}/>
                             
                             <Button type="submit" variant="contained" fullWidth sx={{py: 2, bgcolor: "#b8f2db", color:"black"}} >Registrar</Button>

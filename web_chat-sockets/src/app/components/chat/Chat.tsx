@@ -10,7 +10,7 @@ const Chat = () => {
     //     // console.log(socket.id)
     // },[])
     return (
-        <Paper square elevation={0} sx={{width:"100%", display:"flex", p:"0"}}>
+        <Paper square elevation={0} sx={{width:"100%", display:"flex", p:"0", mb:"2"}}>
             <SideBar />
             <ChatBox />
             {/* <Profile /> */}

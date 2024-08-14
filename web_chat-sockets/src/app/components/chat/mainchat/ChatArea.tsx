@@ -25,13 +25,14 @@ const ChatArea = () => {
                                 component="span"
                                 variant="caption"
                                 color="text.primary"
+                                fontSize={15}
                                 >
                                 E ai? Esse é só o front para teste
                                 </Typography>
                                 }
                             />
                             <Box mt={1} sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                                <Typography variant="body2">
+                                <Typography variant="body2" fontSize={12}>
                                     17:40
                                 </Typography>
                                 <Box>
@@ -62,13 +63,14 @@ const ChatArea = () => {
                                 component="span"
                                 variant="caption"
                                 color="text.primary"
+                                fontSize={15}
                                 >
                                 E ai? Esse é só o Envio tlg
                                 </Typography>
                                 }
                             />
                             <Box mt={1} sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                                <Typography variant="body2">
+                                <Typography variant="body2" fontSize={12}>
                                     17:40
                                 </Typography>
                                 <Box>
