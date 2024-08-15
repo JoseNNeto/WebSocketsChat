@@ -3,6 +3,7 @@ import { Alert, Box, Button, Container, Grid, Paper, TextField, Typography } fro
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
     const [formError, setFormError] = useState<string>("");
@@ -11,7 +12,14 @@ const Login = () => {
     const { register, handleSubmit, formState: {errors} } = useForm();
 
     const onSubmit = (data: any) => {
-        api.post("/user/login", data).then((res) => {router.push("/"); localStorage.setItem("token", res.data.token)}).catch((err) => setFormError(err.response.msg));
+        api.post("/user/login", data)
+        .then((res) => {
+            router.push("/");
+            localStorage.setItem("token", res.data.token);
+            const user = jwtDecode(res.data.token);
+            localStorage.setItem("user", JSON.stringify(user));
+        })
+        .catch((err) => setFormError(err.response.msg));
     } 
     
     try {
@@ -33,7 +41,7 @@ const Login = () => {
                                 <img src="chat_messages.svg" alt="Logo" width={100} height={100}/>
                             </Box>
                             <Typography variant="h4" gutterBottom sx={{fontWeight:"300"}}>
-                                MiNeZap
+                                EsquizoChat
                             </Typography>
                             <Typography>
                                 Chat em tempo real usando WebSockets.

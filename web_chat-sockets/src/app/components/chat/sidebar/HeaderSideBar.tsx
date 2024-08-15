@@ -2,8 +2,13 @@ import { Avatar, Card, CardHeader, IconButton, Menu, MenuItem } from "@mui/mater
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { SetStateAction, useState } from "react";
 import { useRouter } from "next/router";
+import { UserInterface } from "@/interface/UserInterface";
 
-const HeaderSideBar = () => {
+interface HeaderSidebarProps {
+    user: UserInterface;
+}
+
+const HeaderSideBar = ({ user }: HeaderSidebarProps) => {
     const router = useRouter();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -43,8 +48,8 @@ const HeaderSideBar = () => {
                     </Menu>
                     </>
                 }
-                title="Netinho"
-                subheader="Fazendo pra testar"/>
+                title={user.nome}
+                subheader={user.email}/>
         </Card>
     );
 }

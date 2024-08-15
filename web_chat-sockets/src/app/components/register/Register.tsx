@@ -34,7 +34,7 @@ export const Register = () => {
                                 <img src="chat_messages.svg" alt="Logo" width={100} height={100}/>
                             </Box>
                             <Typography variant="h4" gutterBottom sx={{fontWeight:"300"}}>
-                                MiNeZap
+                                EsquizoChat
                             </Typography>
                             <Typography>
                                 Chat em tempo real usando WebSockets.

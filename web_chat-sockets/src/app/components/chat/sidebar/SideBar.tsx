@@ -2,8 +2,14 @@ import { Avatar, Box, Divider, List, ListItem, ListItemAvatar, ListItemText, Tab
 import HeaderSideBar from "./HeaderSideBar";
 import { SetStateAction, useState } from "react";
 import React from "react";
+import { UserInterface } from "@/interface/UserInterface";
+import dynamic from "next/dynamic";
 
-const SideBar = () => {
+interface SidebarProps {
+    user: UserInterface;
+}
+
+const SideBar = ({ user }: SidebarProps) => {
     const [value, setValue] = useState(0);
 
     const handleChange = (event: any, newValue: number) => {
@@ -11,8 +17,8 @@ const SideBar = () => {
     }
    return (
     <Box sx={{width:"30vw", height: "100vh"}}>
-        <HeaderSideBar />
-        <Tabs value={"value"} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
+        <HeaderSideBar user={user} />
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth">
             <Tab label="Chat" />
             <Tab label="Usuários" />
         </Tabs>
@@ -89,4 +95,7 @@ const SideBar = () => {
     
    ); 
 };
-export default SideBar;
+// export default SideBar;
+export default dynamic(() => Promise.resolve(SideBar), {
+    ssr: false,
+});
