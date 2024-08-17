@@ -1,7 +1,11 @@
 import { Card, CardHeader, Avatar, IconButton } from "@mui/material";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const HeaderMainChat = () => {
+interface HeaderMainChatProps {
+    roomData: any;
+}
+
+const HeaderMainChat = ({roomData}: HeaderMainChatProps) => {
     return (
         <Card sx={{background:"#b8f2db", borderRadius: 0}}>
             <CardHeader
@@ -10,8 +14,8 @@ const HeaderMainChat = () => {
                         R
                     </Avatar>
                 }
-                title="Netinho"
-                subheader="Fazendo pra testar"/>
+                title={roomData.receiver.nome}
+                subheader={roomData.receiver.email}/>
         </Card>
     );
 }

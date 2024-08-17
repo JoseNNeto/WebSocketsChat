@@ -11,11 +11,18 @@ interface ChatProps {
     user: UserInterface;
 }
 
+interface RoomData {
+    room?: string;
+    receiver?: UserInterface;
+}
+
 const PATH = "http://localhost:3333";
 
 const Chat = ({ user }: ChatProps) => {
     const socketRef = useRef<Socket | null>(null);
     const [isConnected, setIsConnected] = useState<boolean>(false);
+    const [usersOnline, setUsersOnline] = useState<UserInterface[]>([]);
+    const [roomData, setRoomData] = useState<RoomData>({});
 
     useEffect(() => {
         const socket = io(PATH);
@@ -41,14 +48,15 @@ const Chat = ({ user }: ChatProps) => {
             socketRef.current.emit("ADD_USER", user);
             socketRef.current.on("USER_ADDED", (data) => {
                 console.log("users online agora:",data);
+                setUsersOnline(data);
             });
         }
     }, [isConnected]);
 
     return (
         <Paper square elevation={0} sx={{width:"100%", display:"flex", p:"0", mb:"2"}}>
-            <SideBar user={user}/>
-            <ChatBox />
+            <SideBar user={user} onlineUsers={usersOnline} roomData={roomData} setRoomData={setRoomData}/>
+            <ChatBox roomData={roomData}/>
             {/* <Profile /> */}
         </Paper>
     );

@@ -4,12 +4,21 @@ import HeaderMainChat from "./HeaderMainChat";
 import ChatArea from "./ChatArea";
 import Footer from "./Footer";
 
-const ChatBox = () => {
+interface ChatBoxProps {
+    roomData: any;
+}
+
+const ChatBox = ({roomData}: ChatBoxProps) => {
     return ( 
         <Box sx={{ width:"70vw", display: "flex", height: "100vh", flexDirection:"column"}}>
-            <HeaderMainChat />
-            <ChatArea />
-            <Footer />
+            {roomData.room?
+            <>
+                <HeaderMainChat roomData={roomData} />
+                <ChatArea />
+                <Footer />
+            </>: 
+                <Box>Selecione uma sala</Box>
+            }
         </Box>
     );
 };
