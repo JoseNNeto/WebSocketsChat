@@ -15,15 +15,15 @@ const Login = () => {
         api.post("/user/login", data)
         .then((res) => {
             router.push("/");
-            localStorage.setItem("token", res.data.token);
+            sessionStorage.setItem("token", res.data.token);
             const user = jwtDecode(res.data.token);
-            localStorage.setItem("user", JSON.stringify(user));
+            sessionStorage.setItem("user", JSON.stringify(user));
         })
         .catch((err) => setFormError(err.response.msg));
     } 
     
     try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         if(token) {
             router.push("/");
         }

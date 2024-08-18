@@ -6,16 +6,17 @@ import Footer from "./Footer";
 
 interface ChatBoxProps {
     roomData: any;
+    handleSendMsg:any;
 }
 
-const ChatBox = ({roomData}: ChatBoxProps) => {
+const ChatBox = ({roomData, handleSendMsg}: ChatBoxProps) => {
     return ( 
         <Box sx={{ width:"70vw", display: "flex", height: "100vh", flexDirection:"column"}}>
             {roomData.room?
             <>
                 <HeaderMainChat roomData={roomData} />
                 <ChatArea />
-                <Footer />
+                <Footer handleSendMsg={handleSendMsg}/>
             </>: 
                 <Box>Selecione uma sala</Box>
             }

@@ -23,8 +23,8 @@ const HeaderSideBar = ({ user }: HeaderSidebarProps) => {
 
     const handleLogout = () => {
         handleClose();
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("user");
         router.push("/login");
     };
     return (

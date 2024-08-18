@@ -50,13 +50,20 @@ const Chat = ({ user }: ChatProps) => {
                 console.log("users online agora:",data);
                 setUsersOnline(data);
             });
+            // return () => {socketRef.current?.disconnect()};
         }
     }, [isConnected]);
+
+    const handleSendMsg = (msg:any) => {
+        if(socketRef.current?.connected){
+            socketRef.current.emit("SEND_MSG", msg);
+        }
+    }
 
     return (
         <Paper square elevation={0} sx={{width:"100%", display:"flex", p:"0", mb:"2"}}>
             <SideBar user={user} onlineUsers={usersOnline} roomData={roomData} setRoomData={setRoomData}/>
-            <ChatBox roomData={roomData}/>
+            <ChatBox roomData={roomData} handleSendMsg={handleSendMsg}/>
             {/* <Profile /> */}
         </Paper>
     );

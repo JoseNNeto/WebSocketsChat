@@ -38,6 +38,11 @@ const socketInit = (server) => {
             io.emit("USER_ADDED", onlineUsers);
         });
 
+        socket.on("SEND_MSG", (msg) => {
+            console.log("MSG FROM FRONTEND: ", msg);
+            
+        })
+
         socket.on("disconnect", () => {
             console.log("User Disconnected");
         });

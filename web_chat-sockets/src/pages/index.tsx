@@ -9,11 +9,11 @@ const Index = () => {
     const [user, setUser] = useState<UserInterface | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         if(!token) {
             router.push("/login");
         }
-        const user: UserInterface = JSON.parse(localStorage.getItem("user") as string);
+        const user: UserInterface = JSON.parse(sessionStorage.getItem("user") as string);
         setUser(user);
     }, []);
 
