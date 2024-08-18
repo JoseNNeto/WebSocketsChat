@@ -55,6 +55,7 @@ const Chat = ({ user }: ChatProps) => {
                 console.log("mensagem recebida:", data);
                 setAllMsgs((msgs) => [...msgs, data]);
             });
+            // console.log(allMsgs);
             // return () => {socketRef.current?.disconnect()};
         }
     }, [isConnected]);
@@ -70,7 +71,7 @@ const Chat = ({ user }: ChatProps) => {
     return (
         <Paper square elevation={0} sx={{width:"100%", display:"flex", p:"0", mb:"2"}}>
             <SideBar user={user} onlineUsers={usersOnline} roomData={roomData} setRoomData={setRoomData}/>
-            <ChatBox roomData={roomData} handleSendMsg={handleSendMsg}/>
+            <ChatBox roomData={roomData} handleSendMsg={handleSendMsg} allMsg={allMsgs} user={user}/>
             {/* <Profile /> */}
         </Paper>
     );

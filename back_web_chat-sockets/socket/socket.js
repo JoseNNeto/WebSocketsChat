@@ -29,9 +29,9 @@ const removeUser = (socketId) => {
         }
     }
 
-    user.socketId = socketId;
-    onlineUsers.pop(user);
-    console.log("Usuários online:", onlineUsers);
+    // user.socketId = socketId;
+    // onlineUsers.pop(user);
+    // console.log("Usuários online:", onlineUsers);
 }
 
 const socketInit = (server) => {
