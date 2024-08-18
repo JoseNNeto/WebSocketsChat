@@ -23,6 +23,7 @@ const Chat = ({ user }: ChatProps) => {
     const [isConnected, setIsConnected] = useState<boolean>(false);
     const [usersOnline, setUsersOnline] = useState<UserInterface[]>([]);
     const [roomData, setRoomData] = useState<RoomData>({});
+    const [allMsgs, setAllMsgs] = useState<any[]>([]);
 
     useEffect(() => {
         const socket = io(PATH);
@@ -50,13 +51,19 @@ const Chat = ({ user }: ChatProps) => {
                 console.log("users online agora:",data);
                 setUsersOnline(data);
             });
+            socketRef.current.on("RECEIVE_MSG", (data) => {
+                console.log("mensagem recebida:", data);
+                setAllMsgs((msgs) => [...msgs, data]);
+            });
             // return () => {socketRef.current?.disconnect()};
         }
     }, [isConnected]);
 
     const handleSendMsg = (msg:any) => {
         if(socketRef.current?.connected){
-            socketRef.current.emit("SEND_MSG", msg);
+            const data = {msg, receiver: roomData.receiver, sender: user};
+            socketRef.current.emit("SEND_MSG", data);
+            setAllMsgs((msgs) => [...msgs, data]);
         }
     }
 

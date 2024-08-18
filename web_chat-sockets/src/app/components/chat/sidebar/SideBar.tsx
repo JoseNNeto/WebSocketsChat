@@ -1,6 +1,6 @@
 import { Avatar, Box, Divider, List, ListItem, ListItemAvatar, ListItemText, Tab, Tabs, Typography } from "@mui/material";
 import HeaderSideBar from "./HeaderSideBar";
-import { SetStateAction, useState } from "react";
+import { Fragment, SetStateAction, useState } from "react";
 import React from "react";
 import { UserInterface } from "@/interface/UserInterface";
 import dynamic from "next/dynamic";
@@ -40,7 +40,7 @@ const SideBar = ({ user, onlineUsers, roomData, setRoomData }: SidebarProps) => 
             {
                 onlineUsers?.filter((myself) => myself.id !== user.id).map((item) => {
                     return (
-                        <>
+                        <Fragment key={item.id}>
                             <ListItem alignItems="flex-start" onClick={() => handleChatRoom(item)}>                                <ListItemAvatar>
                                     <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                                 </ListItemAvatar>
@@ -62,7 +62,7 @@ const SideBar = ({ user, onlineUsers, roomData, setRoomData }: SidebarProps) => 
                                 />
                             </ListItem>
                             <Divider variant="inset" component="li" />
-                        </>
+                        </Fragment>
                     );
                 })
             }      

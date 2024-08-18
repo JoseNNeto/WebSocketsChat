@@ -16,8 +16,11 @@ const Footer = ({handleSendMsg}:FooterProps) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        handleSendMsg(message);
-        // console.log(message)
+
+        if(message){
+            handleSendMsg(message);
+            setMessage("");
+        }
     }
 
     return (
@@ -30,6 +33,7 @@ const Footer = ({handleSendMsg}:FooterProps) => {
                     label="Digite uma mensagem"
                     variant="outlined"
                     sx={{width:"70%"}}
+                    value={message}
                     onChange={handleChange}
                 />
                 <Button type="submit" variant="contained" sx={{width:"15%"}} >Enviar</Button>
