@@ -10,9 +10,7 @@ const HeaderMainChat = ({roomData}: HeaderMainChatProps) => {
         <Card sx={{background:"#b8f2db", borderRadius: 0}}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{bgcolor: "red"}} aria-label="recipe">
-                        R
-                    </Avatar>
+                    <Avatar sx={{bgcolor: "white"}} aria-label="recipe" alt="User" src="avatar-15.svg"/>
                 }
                 title={roomData.receiver.nome}
                 subheader={roomData.receiver.email}/>

@@ -42,7 +42,7 @@ const SideBar = ({ user, onlineUsers, roomData, setRoomData }: SidebarProps) => 
                     return (
                         <Fragment key={item.id}>
                             <ListItem alignItems="flex-start" onClick={() => handleChatRoom(item)}>                                <ListItemAvatar>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                    <Avatar alt="User" src="avatar-15.svg" />
                                 </ListItemAvatar>
                                 <ListItemText
                                     primary={item.nome}
@@ -54,9 +54,8 @@ const SideBar = ({ user, onlineUsers, roomData, setRoomData }: SidebarProps) => 
                                         variant="caption"
                                         color="text.primary"
                                         >
-                                        Ali Connors
+                                        {item.email}
                                         </Typography>
-                                        {" — I'll be in your neighborhood doing errands this…"}
                                     </React.Fragment>
                                     }
                                 />

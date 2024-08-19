@@ -1,5 +1,5 @@
 import {Server} from 'socket.io';
-import { saveMessage } from '../socket/message.js';
+import { saveMessage } from '../service/messageService.js';
 
 const onlineUsers = [];
 

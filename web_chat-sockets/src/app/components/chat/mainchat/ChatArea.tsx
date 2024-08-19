@@ -20,7 +20,14 @@ const ChatArea = ({allMsg, user}: ChatAreaProps) => {
                     <ListItem sx={item.sender.id === user.id? {flexDirection:"row-reverse", mb:2} : {mb:2}}>
                     <Box sx={item.sender.id === user.id? {display:"flex", width:"80%", flexDirection:"row-reverse"} : {display:"flex", width:"80%"}}>
                         <ListItemAvatar sx={item.sender.id === user.id? {display:"flex", flexDirection:"row-reverse"} : {}}>
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                            {item.sender.id === user.id ? (
+                                <Avatar sx={{bgcolor: "red"}} aria-label="recipe">
+                                ME
+                            </Avatar>
+                            ) : (
+                                <Avatar alt="User" src="avatar-15.svg" />
+                            )}
+                                
                         </ListItemAvatar>
                         <Paper sx={item.sender.id === user.id? {width:"100%", p:1.5, bgcolor:"#b8f2db"}: {width:"100%", p:1.5}}>
                             <ListItemText

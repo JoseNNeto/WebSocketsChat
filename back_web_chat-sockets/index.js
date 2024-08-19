@@ -3,6 +3,7 @@ import { Server } from "socket.io";
 import express from "express";
 import cors from "cors"
 import userController from "./controller/userController.js"
+import messageController from "./controller/messageController.js"
 import connectMongo from "./config/db.js";
 import http from "http";
 import socketInit from "./socket/socket.js";
@@ -17,6 +18,7 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use("/user", userController);
+app.use("/message", messageController);
 
 connectMongo().then(() => {
     socketInit(server);

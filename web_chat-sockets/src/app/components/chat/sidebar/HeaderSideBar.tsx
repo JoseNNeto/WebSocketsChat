@@ -32,7 +32,7 @@ const HeaderSideBar = ({ user }: HeaderSidebarProps) => {
             <CardHeader
                 avatar={
                     <Avatar sx={{bgcolor: "red"}} aria-label="recipe">
-                        R
+                        ME
                     </Avatar>
                 }
                 action={
