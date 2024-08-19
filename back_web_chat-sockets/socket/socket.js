@@ -1,4 +1,5 @@
 import {Server} from 'socket.io';
+import { saveMessage } from '../socket/message.js';
 
 const onlineUsers = [];
 
@@ -54,6 +55,7 @@ const socketInit = (server) => {
 
         socket.on("SEND_MSG", (msg) => {
             console.log("MSG FROM FRONTEND: ", msg);
+            saveMessage(msg);
             socket.to(msg.receiver.socketId).emit("RECEIVE_MSG", msg);
         })
 
