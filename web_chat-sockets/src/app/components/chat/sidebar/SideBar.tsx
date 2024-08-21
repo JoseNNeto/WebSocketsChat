@@ -4,15 +4,18 @@ import { Fragment, SetStateAction, useState } from "react";
 import React from "react";
 import { UserInterface } from "@/interface/UserInterface";
 import dynamic from "next/dynamic";
+import axios from "axios";
+import { api } from "@/api/api";
 
 interface SidebarProps {
     user: UserInterface;
     onlineUsers?: UserInterface[];
     roomData?: any;
     setRoomData?: React.Dispatch<SetStateAction<any>>;
+    setAllMsgs?: React.Dispatch<SetStateAction<any[]>>;
 }
 
-const SideBar = ({ user, onlineUsers, roomData, setRoomData }: SidebarProps) => {
+const SideBar = ({ user, onlineUsers, roomData, setRoomData, setAllMsgs }: SidebarProps) => {
     const [value, setValue] = useState(0);
 
     const handleChange = (event: any, newValue: number) => {
@@ -27,6 +30,14 @@ const SideBar = ({ user, onlineUsers, roomData, setRoomData }: SidebarProps) => 
                 receiver: user
             });
         }
+        api.get(`/message/${user.id}`).then((response) => {
+            console.log(response.data);
+            if (setAllMsgs) {
+                setAllMsgs(response.data.data);
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
     }
    return (
     <Box sx={{width:"30vw", height: "100vh"}}>

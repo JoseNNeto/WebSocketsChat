@@ -3,6 +3,7 @@ import React from "react";
 import ReplyIcon from '@mui/icons-material/Reply';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { UserInterface } from "@/interface/UserInterface";
+import { api } from "@/api/api";
 
 interface ChatAreaProps {
     allMsg: any[];
@@ -10,6 +11,14 @@ interface ChatAreaProps {
 }
 
 const ChatArea = ({allMsg, user}: ChatAreaProps) => {
+    const handleDelete = (id: string) => {
+        console.log(id);
+        api.delete(`/message/${id}`).then((response) => {
+            console.log(response.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
     return ( 
         <Box sx={{ height:"100%", overflowY:"auto", flex:"1 0 0", background:"#f9f9f9"}}>
             <Stack direction="row" justifyContent="center" sx={{py:2, position:"sticky", top:0, zIndex:2, background:"#f9f9f9"}}>
@@ -53,7 +62,7 @@ const ChatArea = ({allMsg, user}: ChatAreaProps) => {
                                     <IconButton size="small">
                                         <ReplyIcon fontSize="small"/>
                                     </IconButton>
-                                    <IconButton size="small" color="error">
+                                    <IconButton size="small" color="error"  onClick={()=> handleDelete(item._id)}>
                                         <DeleteOutlineIcon fontSize="small"/>
                                     </IconButton>
                                 </Box>

@@ -13,7 +13,7 @@ const server = http.createServer(app);
 
 app.use(cors({
     origin: "*", // Permitir CORS para o frontend
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     credentials: true
 }));
 app.use(express.json());
