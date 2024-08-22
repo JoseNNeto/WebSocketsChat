@@ -8,17 +8,10 @@ import { api } from "@/api/api";
 interface ChatAreaProps {
     allMsg: any[];
     user: UserInterface;
+    handleDelete: any;
 }
 
-const ChatArea = ({allMsg, user}: ChatAreaProps) => {
-    const handleDelete = (id: string) => {
-        console.log(id);
-        api.delete(`/message/${id}`).then((response) => {
-            console.log(response.data);
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
+const ChatArea = ({allMsg, user, handleDelete}: ChatAreaProps) => {
     return ( 
         <Box sx={{ height:"100%", overflowY:"auto", flex:"1 0 0", background:"#f9f9f9"}}>
             <Stack direction="row" justifyContent="center" sx={{py:2, position:"sticky", top:0, zIndex:2, background:"#f9f9f9"}}>
@@ -62,9 +55,13 @@ const ChatArea = ({allMsg, user}: ChatAreaProps) => {
                                     <IconButton size="small">
                                         <ReplyIcon fontSize="small"/>
                                     </IconButton>
-                                    <IconButton size="small" color="error"  onClick={()=> handleDelete(item._id)}>
-                                        <DeleteOutlineIcon fontSize="small"/>
-                                    </IconButton>
+                                    {item.sender.id === user.id ? (
+                                        <IconButton size="small" color="error"  onClick={()=> handleDelete(item._id)}>
+                                            <DeleteOutlineIcon fontSize="small"/>
+                                        </IconButton>
+                                    ) : (
+                                        null
+                                    )}
                                 </Box>
                             </Box>
                         </Paper>

@@ -6,6 +6,8 @@ import socket from "@/pages/socket";
 import { UserInterface } from "@/interface/UserInterface";
 import { io, Socket } from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
+import { api } from "@/api/api";
+import { revalidatePath } from "next/cache";
 
 interface ChatProps {
     user: UserInterface;
@@ -17,6 +19,8 @@ interface RoomData {
 }
 
 const PATH = "http://localhost:3333";
+// const PATH = "https://172.26.130.105:3333"
+// const PATH = "https://10.26.12.92:3333"
 
 const Chat = ({ user }: ChatProps) => {
     const socketRef = useRef<Socket | null>(null);
@@ -55,23 +59,52 @@ const Chat = ({ user }: ChatProps) => {
                 console.log("mensagem recebida:", data);
                 setAllMsgs((msgs) => [...msgs, data]);
             });
-            // console.log(allMsgs);
-            // return () => {socketRef.current?.disconnect()};
+            socketRef.current.on("DELETED_MSG", (data) => {
+                setAllMsgs((msgs) => msgs.filter((msg) => msg._id !== data.msg._id));
+                console.log("mensagem deletada:", data);
+            });
+            
+            return () => {
+                if (socketRef.current) {
+                    socketRef.current.off("USER_ADDED");
+                    socketRef.current.off("RECEIVE_MSG");
+                    socketRef.current.off("DELETED_MSG");
+                }
+            };
         }
     }, [isConnected]);
 
     const handleSendMsg = (msg:any) => {
         if(socketRef.current?.connected){
-            const data = {msg, receiver: roomData.receiver, sender: user};
+            let sender = { ...user, socketId: socketRef.current.id };
+            const data = {msg, receiver: roomData.receiver, sender};
             socketRef.current.emit("SEND_MSG", data);
-            setAllMsgs((msgs) => [...msgs, data]);
+            // setAllMsgs((msgs) => [...msgs, data]);
         }
+
+    }
+
+    const handleDelete = (id: string) => {
+        console.log(id);
+        api.delete(`/message/${id}`).then((response) => {
+            console.log(response.data);
+            if (socketRef.current?.connected){
+                const data = {
+                    msg : response.data.data,
+                    receiver : roomData.receiver,
+                }
+                socketRef.current.emit("DELETED_MSG", data);
+                setAllMsgs((msgs) => msgs.filter((msg) => msg._id !== response.data.data._id));
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
         <Paper square elevation={0} sx={{width:"100%", display:"flex", p:"0", mb:"2"}}>
             <SideBar user={user} onlineUsers={usersOnline} roomData={roomData} setRoomData={setRoomData} setAllMsgs={setAllMsgs}/>
-            <ChatBox roomData={roomData} handleSendMsg={handleSendMsg} allMsg={allMsgs} user={user}/>
+            <ChatBox roomData={roomData} handleSendMsg={handleSendMsg} allMsg={allMsgs} user={user} handleDelete={handleDelete}/>
             {/* <Profile /> */}
         </Paper>
     );

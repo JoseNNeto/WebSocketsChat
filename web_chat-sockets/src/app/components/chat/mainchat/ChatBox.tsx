@@ -10,15 +10,16 @@ interface ChatBoxProps {
     handleSendMsg:any;
     allMsg: any[];
     user: UserInterface;
+    handleDelete: any;
 }
 
-const ChatBox = ({roomData, handleSendMsg, allMsg, user}: ChatBoxProps) => {
+const ChatBox = ({roomData, handleSendMsg, allMsg, user, handleDelete}: ChatBoxProps) => {
     return ( 
         <Box sx={{ width:"70vw", display: "flex", height: "100vh", flexDirection:"column"}}>
             {roomData.room?
             <>
                 <HeaderMainChat roomData={roomData} />
-                <ChatArea allMsg={allMsg} user={user}/>
+                <ChatArea allMsg={allMsg} user={user} handleDelete={handleDelete}/>
                 <Footer handleSendMsg={handleSendMsg}/>
             </>: 
                 <Box>Selecione uma sala</Box>

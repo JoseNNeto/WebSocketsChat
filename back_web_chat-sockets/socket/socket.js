@@ -21,7 +21,7 @@ const addUser = (user, socketId) => {
     console.log("Usuários online:", onlineUsers);
 }
 
-const removeUser = (socketId) => {
+const removeUser = (socketId) => { 
     const isExists = onlineUsers.find((u) => u.socketId === socketId);
     if (isExists) {
         const index = onlineUsers.findIndex((u) => u.socketId === socketId);
@@ -29,10 +29,6 @@ const removeUser = (socketId) => {
             onlineUsers.splice(index, 1);
         }
     }
-
-    // user.socketId = socketId;
-    // onlineUsers.pop(user);
-    // console.log("Usuários online:", onlineUsers);
 }
 
 const socketInit = (server) => {
@@ -47,19 +43,25 @@ const socketInit = (server) => {
 
     io.on("connection", (socket) => {
         console.log("User Connected: ", socket.id);
-        socket.on("ADD_USER", (user) => {
+        socket.on("ADD_USER", (user) => { //Adicionar User
             console.log("User Added: ", user);
             addUser(user, socket.id);
             io.emit("USER_ADDED", onlineUsers);
         });
 
-        socket.on("SEND_MSG", (msg) => {
+        socket.on("SEND_MSG", async (msg) => { //Enviar Mensagem e salva no banco
             console.log("MSG FROM FRONTEND: ", msg);
-            saveMessage(msg);
-            socket.to(msg.receiver.socketId).emit("RECEIVE_MSG", msg);
+            const isSaved = await saveMessage(msg);
+            if (isSaved) {
+                io.to(msg.receiver.socketId).to(msg.sender.socketId).emit("RECEIVE_MSG", msg);
+            }
         })
 
-        socket.on("disconnect", () => {
+        socket.on("DELETED_MSG", (msg) => { //Deletar Mensagem -> tem um pequeno bug onde a gente só consegue deletar a mensagem depois de recarregar a página
+            socket.to(msg.receiver.socketId).emit("DELETED_MSG", msg);
+        })
+
+        socket.on("disconnect", () => { //Desconectar
             console.log(socket.id, " Disconnected");
             removeUser(socket.id);
             io.emit("USER_REMOVED", onlineUsers);

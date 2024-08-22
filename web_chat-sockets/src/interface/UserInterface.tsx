@@ -4,4 +4,5 @@ export interface UserInterface {
     email: string;
     senha: string;
     token: string;
+    socketId: string | undefined;
 }
