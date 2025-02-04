@@ -21,6 +21,7 @@ interface RoomData {
 const PATH = "http://localhost:3333";
 // const PATH = "https://172.26.130.105:3333"
 // const PATH = "https://10.26.12.92:3333"
+// const PATH = "https://f3a0-170-238-120-153.ngrok-free.app"
 
 const Chat = ({ user }: ChatProps) => {
     const socketRef = useRef<Socket | null>(null);

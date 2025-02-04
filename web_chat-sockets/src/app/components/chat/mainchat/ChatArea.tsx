@@ -48,7 +48,7 @@ const ChatArea = ({allMsg, user, handleDelete}: ChatAreaProps) => {
                                 }
                             />
                             <Box mt={1} sx={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                                <Typography variant="body2" fontSize={12}>
+                                {/* <Typography variant="body2" fontSize={12}>
                                     17:40
                                 </Typography>
                                 <Box>
@@ -62,7 +62,7 @@ const ChatArea = ({allMsg, user, handleDelete}: ChatAreaProps) => {
                                     ) : (
                                         null
                                     )}
-                                </Box>
+                                </Box> */}
                             </Box>
                         </Paper>
                     </Box>
