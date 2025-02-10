@@ -4,4 +4,4 @@
 
 ## dentro da pasta /test
 
-## Arquivo PT008.-testk6.js
+## Arquivo PT008-testk6.js
