@@ -42,7 +42,7 @@ def pt006():
 
     # Preencher login para os dois navegadores
     preencher_login(driverChrome1, "chrome@gmail.com", "chrome")
-    preencher_login(driverChrome2, "chrome@gmail.com", "chrome")
+    preencher_login(driverChrome2, "firefox@gmail.com", "firefox")
 
     # Esperar a lista aparecer nos dois navegadores
     esperar_lista_aparecer(driverChrome1)
