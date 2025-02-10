@@ -1,3 +1,4 @@
+//k6 run PT010-testk6.js
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 

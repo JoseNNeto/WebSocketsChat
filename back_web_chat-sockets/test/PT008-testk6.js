@@ -1,4 +1,4 @@
-//k6 run PT009-testk6.js
+//k6 run PT008-testk6.js
 import { check, sleep } from 'k6';
 import ws from 'k6/ws';
 

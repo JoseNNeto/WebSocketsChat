@@ -1,3 +1,4 @@
+//k6 run PT009-testk6.js
 import { check, sleep } from 'k6';
 import ws from 'k6/ws';
 import { Trend } from 'k6/metrics';

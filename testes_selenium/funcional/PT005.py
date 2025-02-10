@@ -33,7 +33,7 @@ def esperar_lista_aparecer(driver):
     print("✅ Lista carregada!")
     
 def clicar_usuario(driver, name):
-    """Clica na `<li>` que contém o nome 'Chrome'."""
+    ##Clica na `<li>` que contém o nome 'Chrome'.
     user_element = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable(
             (By.XPATH, f"//span[contains(text(), '{name}')]/ancestor::li")
@@ -42,7 +42,7 @@ def clicar_usuario(driver, name):
     user_element.click()
     print("✅ Usuário 'Chrome' clicado!")
 
-def pt006():
+def pt005():
     # Abrindo os navegadores
     driverChrome1 = webdriver.Chrome()
     driverChrome1.get("http://localhost:3000")
@@ -70,4 +70,4 @@ def pt006():
     driverChrome1.quit()
     driverChrome2.quit()
 
-pt006()
+pt005()
