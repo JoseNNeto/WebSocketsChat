@@ -1,12 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-# Configuração do WebDriver usando WebDriver Manager
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service)
+# # Configuração do WebDriver usando WebDriver Manager
+# service = Service(ChromeDriverManager().install())
+# driver = webdriver.Chrome(service=service)
+
+##Driver linux
+driver = webdriver.Chrome()
 
 try:
     # Passo 1: Acessar a página de login
@@ -26,7 +29,7 @@ try:
     login_button.click()
 
     # Passo 5: Aguardar a página carregar após o login
-    time.sleep(2)
+    time.sleep(5)
 
     # Passo 6: Verificar se o texto "Selecione uma sala" está presente na página
     if "Selecione uma sala" in driver.page_source:
