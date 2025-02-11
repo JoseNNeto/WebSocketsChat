@@ -4,16 +4,16 @@ import ws from 'k6/ws';
 
 export const options = {
   stages: [
-    { duration: '10s', target: 5 },  
-    { duration: '10s', target: 8 },  
-    { duration: '10s', target: 10 },  
-    { duration: '10s', target: 12 },
-    { duration: '10s', target: 15 },
-    { duration: '10s', target: 20 },
-    { duration: '10s', target: 30 },
-    { duration: '10s', target: 35 },
-    { duration: '10s', target: 40 },
-    { duration: '10s', target: 50 }, // Chegar até o limite de 50
+    { duration: '5s', target: 5 },  
+    { duration: '5s', target: 8 },  
+    { duration: '5s', target: 10 },  
+    { duration: '5s', target: 12 },
+    { duration: '5s', target: 15 },
+    { duration: '5s', target: 20 },
+    { duration: '5s', target: 30 },
+    { duration: '5s', target: 35 },
+    { duration: '5s', target: 40 },
+    { duration: '5s', target: 50 }, // Chegar até o limite de 50
   ],
 };
 

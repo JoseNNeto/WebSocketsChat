@@ -1,17 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-# Configuração do WebDriver para o primeiro usuário (test@example.com)
-# service = Service(ChromeDriverManager().install())
-# driver_user1 = webdriver.Chrome(service=service)
-driver_user1 = webdriver.Chrome()
+#Configuração do WebDriver para o primeiro usuário (test@example.com)
+service = Service(ChromeDriverManager().install())
+driver_user1 = webdriver.Chrome(service=service)
+# driver_user1 = webdriver.Chrome()
 
 # Configuração do WebDriver para o segundo usuário (test2@example.com)
-# driver_user2 = webdriver.Chrome(service=service)
-driver_user2 = webdriver.Chrome()
+driver_user2 = webdriver.Chrome(service=service)
+# driver_user2 = webdriver.Chrome()
 
 try:
     # Passo 1: Realizar login para o usuário 1 (test@example.com)

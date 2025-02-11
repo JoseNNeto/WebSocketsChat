@@ -1,15 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-# # Configuração do WebDriver usando WebDriver Manager
-# service = Service(ChromeDriverManager().install())
-# driver = webdriver.Chrome(service=service)
+# Configuração do WebDriver usando WebDriver Manager
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
 
 ##Driver linux
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 try:
     # Passo 1: Acessar a página de login

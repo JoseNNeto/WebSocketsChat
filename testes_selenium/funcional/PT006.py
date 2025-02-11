@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 def preencher_login(driver, email, senha):
@@ -33,11 +35,14 @@ def esperar_lista_aparecer(driver):
     print("✅ Lista carregada!")
 
 def pt006():
+    service1 = Service(ChromeDriverManager().install())
+    service2 = Service(ChromeDriverManager().install())
+    
     # Abrindo os navegadores
-    driverChrome1 = webdriver.Chrome()
+    driverChrome1 = webdriver.Chrome(service=service1)
     driverChrome1.get("http://localhost:3000")
 
-    driverChrome2 = webdriver.Chrome()
+    driverChrome2 = webdriver.Chrome(service=service1)
     driverChrome2.get("http://localhost:3000")
 
     # Preencher login para os dois navegadores
